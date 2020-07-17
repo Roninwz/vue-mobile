@@ -1,6 +1,6 @@
 /**
  * @author Roninwz
- * 节流指令
+ * @description 节流指令
  * 使用方式： v-throttle:[2000]="shareTime"
  * 其中2000未定时器时间，ms
  **/

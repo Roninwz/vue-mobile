@@ -1,5 +1,6 @@
 /**
  * @author Roninwz
+ * @description 防抖指令
  * 使用方式： v-debounce:[2000]="shareTime"
  * 其中2000未定时器时间，ms
  **/

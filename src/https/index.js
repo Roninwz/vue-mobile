@@ -17,7 +17,7 @@ service.interceptors.request.use(
       // config.headers['token'] = "dcbee512-df21-479e-b431-8f4a23064ede";
 
       //不走网关
-      config.headers["X-Origin-maniujk"] = "GATEWAY_APP";
+      config.headers["X-Origin"] = "GATEWAY_APP";
       config.headers["userInfo"] =
         "eyJhdmF0YXIiOm51bGwsIm1vYmlsZSI6IjE1NzY1NTYwNjg0Iiwibmlja05hbWUiOiIxNTcqKioqMDY4NCIsImlkZW50aWZ5U3RhdHVzIjpudWxsLCJ1c2VySWQiOiI2OTIzMjQwNDk5OTI0MjEzNzYiLCJsb2dpbkNoYW5uZWwiOiJtYW5pdWprLWNoYW5uZWwtY29uc3VtZXItYXBwIn0KIA==";
     }

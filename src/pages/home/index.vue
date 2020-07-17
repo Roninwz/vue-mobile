@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p>{{ date | dateFormat }}</p>
+    <p class="date" v-movable>{{ date | dateFormat }}</p>
     <p>{{ number | numberFixFloat }}</p>
-    <button v-debounce="getData">点击事件</button>
+    <button v-resize="changeChartOptions" v-longpress="longpress">点击事件</button>
   </div>
 </template>
 
@@ -23,11 +23,19 @@ export default {
   computed: {},
   methods: {
     getData() {
+    },
+    changeChartOptions() {
       console.log("my console ddddddddddddd : ");
+    },
+    longpress() {
+      console.log("my console longpress : ");
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
+.date{
+  position: absolute;
+}
 </style>
