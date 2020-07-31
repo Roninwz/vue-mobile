@@ -23,6 +23,7 @@ Vue.prototype.$Def = $Def;
 import Directives from '@/directives/index' 
 Vue.use(Directives)
 
+import '@/icons'
 
 new Vue({
   render: (h) => h(App),
