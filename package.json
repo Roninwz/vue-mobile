@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vue-cli-service serve --port 8099 --mode development --open",
+    "start": "vue-cli-service serve --port 8099 --mode localdev --open",
     "serve": "vue-cli-service serve",
+    "build:localdev": "vue-cli-service build --mode localdev",
+    "build:development": "vue-cli-service build --mode development",
     "build:test": "vue-cli-service build --mode testing",
+    "build:pre": "vue-cli-service build --mode pre",
     "build:prod": "vue-cli-service build --mode production",
-    "build:dev": "vue-cli-service build --mode dev",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

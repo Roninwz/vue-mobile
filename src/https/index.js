@@ -11,15 +11,14 @@ const service = axios.create({
 service.interceptors.request.use(
   (config) => {
     config.headers["x-requested-with"] = "XMLHttpRequest";
-    if (process.env.NODE_ENV === "development") {
+    if (process.env.NODE_ENV === "localdev") {
       //走网关
-      // config.headers['X-Origin-maniujk'] = "maniujk-app";
+      // config.headers['X-Origin-roninwz'] = "roninwz-app";
       // config.headers['token'] = "dcbee512-df21-479e-b431-8f4a23064ede";
 
       //不走网关
       config.headers["X-Origin"] = "GATEWAY_APP";
-      config.headers["userInfo"] =
-        "eyJhdmF0YXIiOm51bGwsIm1vYmlsZSI6IjE1NzY1NTYwNjg0Iiwibmlja05hbWUiOiIxNTcqKioqMDY4NCIsImlkZW50aWZ5U3RhdHVzIjpudWxsLCJ1c2VySWQiOiI2OTIzMjQwNDk5OTI0MjEzNzYiLCJsb2dpbkNoYW5uZWwiOiJtYW5pdWprLWNoYW5uZWwtY29uc3VtZXItYXBwIn0KIA==";
+      config.headers["userInfo"] = "==";
     }
 
     let code = getCode();
@@ -90,7 +89,7 @@ function getCode() {
 
 // 获取baseUrl
 function getBaseUrl() {
-  if (process.env.NODE_ENV !== "development") {
+  if (process.env.NODE_ENV !== "localdev") {
     //return "/";
     return "/app-gateway";
   } else {

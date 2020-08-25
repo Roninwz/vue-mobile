@@ -85,7 +85,7 @@ const encryptUtil = {
    * @param {Object} response
    */
   encryptResponse (response) {
-    // console.log('response encrypt:', $rsaPublicKey, $aesPrivateKey, 'MLSNKNVZW9HDPRDC');
+    // console.log('response encrypt:', $rsaPublicKey, $aesPrivateKey, 'KGKHDHFAFIJVNFUUFIV');
     // console.log('待解密返回数据：', response);
 
     if (response.headers && (response.headers['data-model'] === 'cipher')) {
@@ -186,14 +186,14 @@ const encryptUtil = {
    * AES加密: 封装
    */
   AESEncrypt(word) {
-    return this.Encrypt(JSON.stringify(word), $aesPrivateKey, 'MLSNKNVZW9HDPRDC')
+    return this.Encrypt(JSON.stringify(word), $aesPrivateKey, 'KGKHDHFAFIJVNFUUFIV')
   },
   
   /**
    * AES解密: 封装
    */
   AESDecrypt(word) {
-    return this.Decrypt(word, $aesPrivateKey, 'MLSNKNVZW9HDPRDC')
+    return this.Decrypt(word, $aesPrivateKey, 'KGKHDHFAFIJVNFUUFIV')
   }
 }
 // 封装子模块组件
