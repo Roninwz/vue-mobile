@@ -10,5 +10,5 @@ export default [
       },
       component: () => import('@/pages/home'),
     },
-  ]
+  ];
   

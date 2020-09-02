@@ -1,5 +1,5 @@
-import axios from "axios";
-import { Notify, Toast } from "vant";
+import axios from 'axios';
+import { Notify, Toast } from 'vant';
 import encryptUtil from '@/utils/aesCrypto';
 const service = axios.create({
   baseURL: getBaseUrl(), // url = base url + request url
@@ -10,22 +10,22 @@ const service = axios.create({
 // request
 service.interceptors.request.use(
   (config) => {
-    config.headers["x-requested-with"] = "XMLHttpRequest";
-    if (process.env.NODE_ENV === "localdev") {
-      //走网关
+    config.headers['x-requested-with'] = 'XMLHttpRequest';
+    if (process.env.NODE_ENV === 'localdev') {
+      // 走网关
       // config.headers['X-Origin-roninwz'] = "roninwz-app";
       // config.headers['token'] = "dcbee512-df21-479e-b431-8f4a23064ede";
 
-      //不走网关
-      config.headers["X-Origin"] = "GATEWAY_APP";
-      config.headers["userInfo"] = "==";
+      // 不走网关
+      config.headers['X-Origin'] = 'GATEWAY_APP';
+      config.headers['userInfo'] = '==';
     }
 
-    let code = getCode();
-    code && (config.headers["oauth-code"] = code);
+    const code = getCode();
+    code && (config.headers['oauth-code'] = code);
 
     Toast.loading({
-      message: "加载中...",
+      message: '加载中...',
       forbidClick: true,
       duration: 0,
     });
@@ -45,19 +45,19 @@ service.interceptors.response.use(
     if (response.data.code && response.data.code !== 200) {
       if (response.data.message) {
         Notify({
-          type: "warning",
+          type: 'warning',
           message: JSON.stringify(response.data.message),
         });
       } else {
-        Notify({ type: "warning", message: JSON.stringify(response.data) });
+        Notify({ type: 'warning', message: JSON.stringify(response.data) });
       }
       return Promise.reject(response.data);
     }
     if (response.data.code == 200) {
       // TODO: 解密 引入加解密模块后开启注释
-      if (process.env.VUE_APP_ENCRYPT === "true") {
+      if (process.env.VUE_APP_ENCRYPT === 'true') {
         response = encryptUtil.encryptResponse(response);
-        console.log("解密：", response.data);
+        console.log('解密：', response.data);
       }
     }
 
@@ -67,8 +67,8 @@ service.interceptors.response.use(
     Toast.clear();
 
     var redirect = error.response.headers.redirect;
-    if (redirect === "REDIRECT") {
-      console.log("error", error.response.headers);
+    if (redirect === 'REDIRECT') {
+      console.log('error', error.response.headers);
       window.location.replace(error.response.headers.contextpath);
     }
 
@@ -80,21 +80,21 @@ service.interceptors.response.use(
 function getCode() {
   return (
     decodeURIComponent(
-      (new RegExp("[?|&]" + "code" + "=" + "([^&;]+?)(&|#|;|$)").exec(
+      (new RegExp('[?|&]' + 'code' + '=' + '([^&;]+?)(&|#|;|$)').exec(
         location
-      ) || [, ""])[1].replace(/\+/g, "%20")
+      ) || [, ''])[1].replace(/\+/g, '%20')
     ) || null
   );
 }
 
 // 获取baseUrl
 function getBaseUrl() {
-  if (process.env.NODE_ENV !== "localdev") {
-    //return "/";
-    return "/app-gateway";
+  if (process.env.NODE_ENV !== 'localdev') {
+    // return "/";
+    return '/app-gateway';
   } else {
-    return "/proxy";
-    //return "";
+    return '/proxy';
+    // return "";
   }
 }
 

@@ -5,14 +5,14 @@
  * 其中2000未定时器时间，ms
  **/
 export default {
-  key: "longpress",
+  key: 'longpress',
   func: {
     bind: function(el, binding, vNode) {
-      //el为长按对象（事件源）
-      //binding 事件处理函数
+      // el为长按对象（事件源）
+      // binding 事件处理函数
 
       // 确保提供的表达式是函数，如果不是，将警告传给控制台
-      if (typeof binding.value !== "function") {
+      if (typeof binding.value !== 'function') {
         // 获取组件名称
         const compName = vNode.context.name;
         // 将警告传递给控制台
@@ -29,11 +29,11 @@ export default {
 
       // 定义函数处理程序start
       // 创建计时器（ 1秒后执行函数 ）
-      let start = (e) => {
-        //判断事件是否为click，e.button=0，则为左键，如果是click事件，或者不是按的左键（右键有默认行为），则直接return
-        if (e.type === "click" && e.button !== 0) {
+      const start = (e) => {
+        // 判断事件是否为click，e.button=0，则为左键，如果是click事件，或者不是按的左键（右键有默认行为），则直接return
+        if (e.type === 'click' && e.button !== 0) {
           return;
-        } //判断计时器是否为空
+        } // 判断计时器是否为空
         if (pressTimer === null) {
           pressTimer = setTimeout(() => {
             // 执行事件处理函数
@@ -43,7 +43,7 @@ export default {
       };
 
       // 取消计时器
-      let cancel = () => {
+      const cancel = () => {
         // 检查计时器是否有值
         if (pressTimer !== null) {
           clearTimeout(pressTimer);
@@ -58,14 +58,14 @@ export default {
       };
 
       // 添加事件监听器
-      el.addEventListener("mousedown", start);
-      el.addEventListener("touchstart", start);
+      el.addEventListener('mousedown', start);
+      el.addEventListener('touchstart', start);
 
       // 取消计时器
-      el.addEventListener("click", cancel);
-      el.addEventListener("mouseout", cancel);
-      el.addEventListener("touchend", cancel);
-      el.addEventListener("touchcancel", cancel);
+      el.addEventListener('click', cancel);
+      el.addEventListener('mouseout', cancel);
+      el.addEventListener('touchend', cancel);
+      el.addEventListener('touchcancel', cancel);
     },
   },
 };

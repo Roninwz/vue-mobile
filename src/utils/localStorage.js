@@ -1,4 +1,4 @@
-/*******************************************************
+/** *****************************************************
  * 设置sessionStorage缓存
  * @param  {String}        key   缓存对象key
  * @param  {String/Object} value 缓存对象value
@@ -13,20 +13,20 @@ export const setSStorage = function (key, value) {
     } else {
       v = 'ri-str-' + v;
     }
-    let ss = sessionStorage;
+    const ss = sessionStorage;
     if (ss) {
       ss.setItem(key, v);
     } else { return false; }
     return true;
   };
   
-  /*********************************************
+  /** *******************************************
    * 获取sessionStorage缓存
    * @param  {String}        key   缓存对象key
    * @return {String/Object}       缓存对象value
    *********************************************/
   export const getSStorage = function (key) {
-    let ss = sessionStorage;
+    const ss = sessionStorage;
     if (ss) {
       let v = ss.getItem(key);
       if (!v) { return false; }
@@ -39,32 +39,32 @@ export const setSStorage = function (key, value) {
     } else { return false; }
   };
   
-  /*******************************************
+  /** *****************************************
    * 删除sessionStorage缓存
    * @param  {String} key  缓存对象key
    * @return {Boolean}     是否删除成功 true/false
    *******************************************/
   export const removeSStorage = function (key) {
-    let ss = sessionStorage;
+    const ss = sessionStorage;
     if (ss && key) {
       ss.removeItem(key);
       return true;
     } else { return false; }
   };
   
-  /***************************************
+  /** *************************************
    * 清理sessionStorage缓存
    * @return {Boolean} 是否清理成功 true/false
    ***************************************/
   export const clearSStorage = function () {
-    let ss = sessionStorage;
+    const ss = sessionStorage;
     if (ss) {
       ss.clear();
       return true;
     } else { return false; }
-  }
+  };
   
-  /*******************************************************
+  /** *****************************************************
    * 设置localStorage缓存
    * @param  {String}        key   缓存对象key
    * @param  {String/Object} value 缓存对象value
@@ -79,20 +79,20 @@ export const setSStorage = function (key, value) {
     } else {
       v = 'ri-str-' + v;
     }
-    let ls = localStorage;
+    const ls = localStorage;
     if (ls) {
       ls.setItem(key, v);
     } else { return false; }
     return true;
   };
   
-  /*********************************************
+  /** *******************************************
    * 获取localStorage缓存
    * @param  {String}        key   缓存对象key
    * @return {String/Object}       缓存对象value
    *********************************************/
   export const getLStorage = function (key) {
-    let ls = localStorage;
+    const ls = localStorage;
     if (ls) {
       let v = ls.getItem(key);
       if (!v) { return false; }
@@ -105,27 +105,27 @@ export const setSStorage = function (key, value) {
     } else { return false; }
   };
   
-  /*******************************************
+  /** *****************************************
    * 删除localStorage缓存
    * @param  {String} key  缓存对象key
    * @return {Boolean}     是否删除成功 true/false
    *******************************************/
   export const removeLStorage = function (key) {
-    let ls = localStorage;
+    const ls = localStorage;
     if (ls && key) {
       ls.removeItem(key);
       return true;
     } else { return false; }
   };
   
-  /***************************************
+  /** *************************************
    * 清理localStorage缓存
    * @return {Boolean} 是否清理成功 true/false
    ***************************************/
   export const clearLStorage = function () {
-    let ls = localStorage;
+    const ls = localStorage;
     if (ls) {
       ls.clear();
       return true;
     } else { return false; }
-  }
+  };

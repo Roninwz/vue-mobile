@@ -4,7 +4,7 @@
  * 使用方式： v-focus
  **/
 export default {
-  key: "focus",
+  key: 'focus',
   func: {
     // 当被绑定的元素插入到 DOM 中时……
     inserted: function(el) {

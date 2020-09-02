@@ -1,4 +1,4 @@
-/*!
+/* !
   * vue-router v3.3.2
   * (c) 2020 Evan You
   * @license MIT
@@ -13,29 +13,29 @@
 
   function assert (condition, message) {
     if (!condition) {
-      throw new Error(("[vue-router] " + message))
+      throw new Error(('[vue-router] ' + message));
     }
   }
 
   function warn (condition, message) {
     if ( !condition) {
-      typeof console !== 'undefined' && console.warn(("[vue-router] " + message));
+      typeof console !== 'undefined' && console.warn(('[vue-router] ' + message));
     }
   }
 
   function isError (err) {
-    return Object.prototype.toString.call(err).indexOf('Error') > -1
+    return Object.prototype.toString.call(err).indexOf('Error') > -1;
   }
 
   function isRouterError (err, errorType) {
-    return isError(err) && err._isRouter && (errorType == null || err.type === errorType)
+    return isError(err) && err._isRouter && (errorType == null || err.type === errorType);
   }
 
   function extend (a, b) {
     for (var key in b) {
       a[key] = b[key];
     }
-    return a
+    return a;
   }
 
   var View = {
@@ -89,10 +89,10 @@
           if (cachedData.configProps) {
             fillPropsinData(cachedComponent, data, cachedData.route, cachedData.configProps);
           }
-          return h(cachedComponent, data, children)
+          return h(cachedComponent, data, children);
         } else {
           // render previous empty view
-          return h()
+          return h();
         }
       }
 
@@ -102,7 +102,7 @@
       // render empty node if no matched route or no config component
       if (!matched || !component) {
         cache[name] = null;
-        return h()
+        return h();
       }
 
       // cache component
@@ -148,7 +148,7 @@
         fillPropsinData(component, data, route, configProps);
       }
 
-      return h(component, data, children)
+      return h(component, data, children);
     }
   };
 
@@ -172,19 +172,19 @@
   function resolveProps (route, config) {
     switch (typeof config) {
       case 'undefined':
-        return
+        return;
       case 'object':
-        return config
+        return config;
       case 'function':
-        return config(route)
+        return config(route);
       case 'boolean':
-        return config ? route.params : undefined
+        return config ? route.params : undefined;
       default:
         {
           warn(
             false,
-            "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
-            "expecting an object, function or boolean."
+            'props in "' + (route.path) + '" is a ' + (typeof config) + ', ' +
+            'expecting an object, function or boolean.'
           );
         }
     }
@@ -223,7 +223,7 @@
     for (var key in extraQuery) {
       parsedQuery[key] = extraQuery[key];
     }
-    return parsedQuery
+    return parsedQuery;
   }
 
   function parseQuery (query) {
@@ -232,7 +232,7 @@
     query = query.trim().replace(/^(\?|#|&)/, '');
 
     if (!query) {
-      return res
+      return res;
     }
 
     query.split('&').forEach(function (param) {
@@ -251,7 +251,7 @@
       }
     });
 
-    return res
+    return res;
   }
 
   function stringifyQuery (obj) {
@@ -259,18 +259,18 @@
       var val = obj[key];
 
       if (val === undefined) {
-        return ''
+        return '';
       }
 
       if (val === null) {
-        return encode(key)
+        return encode(key);
       }
 
       if (Array.isArray(val)) {
         var result = [];
         val.forEach(function (val2) {
           if (val2 === undefined) {
-            return
+            return;
           }
           if (val2 === null) {
             result.push(encode(key));
@@ -278,12 +278,12 @@
             result.push(encode(key) + '=' + encode(val2));
           }
         });
-        return result.join('&')
+        return result.join('&');
       }
 
-      return encode(key) + '=' + encode(val)
+      return encode(key) + '=' + encode(val);
     }).filter(function (x) { return x.length > 0; }).join('&') : null;
-    return res ? ("?" + res) : ''
+    return res ? ('?' + res) : '';
   }
 
   /*  */
@@ -316,20 +316,20 @@
     if (redirectedFrom) {
       route.redirectedFrom = getFullPath(redirectedFrom, stringifyQuery);
     }
-    return Object.freeze(route)
+    return Object.freeze(route);
   }
 
   function clone (value) {
     if (Array.isArray(value)) {
-      return value.map(clone)
+      return value.map(clone);
     } else if (value && typeof value === 'object') {
       var res = {};
       for (var key in value) {
         res[key] = clone(value[key]);
       }
-      return res
+      return res;
     } else {
-      return value
+      return value;
     }
   }
 
@@ -344,7 +344,7 @@
       res.unshift(record);
       record = record.parent;
     }
-    return res
+    return res;
   }
 
   function getFullPath (
@@ -356,29 +356,29 @@
     var hash = ref.hash; if ( hash === void 0 ) hash = '';
 
     var stringify = _stringifyQuery || stringifyQuery;
-    return (path || '/') + stringify(query) + hash
+    return (path || '/') + stringify(query) + hash;
   }
 
   function isSameRoute (a, b) {
     if (b === START) {
-      return a === b
+      return a === b;
     } else if (!b) {
-      return false
+      return false;
     } else if (a.path && b.path) {
       return (
         a.path.replace(trailingSlashRE, '') === b.path.replace(trailingSlashRE, '') &&
         a.hash === b.hash &&
         isObjectEqual(a.query, b.query)
-      )
+      );
     } else if (a.name && b.name) {
       return (
         a.name === b.name &&
         a.hash === b.hash &&
         isObjectEqual(a.query, b.query) &&
         isObjectEqual(a.params, b.params)
-      )
+      );
     } else {
-      return false
+      return false;
     }
   }
 
@@ -387,21 +387,21 @@
     if ( b === void 0 ) b = {};
 
     // handle null value #1566
-    if (!a || !b) { return a === b }
+    if (!a || !b) { return a === b; }
     var aKeys = Object.keys(a);
     var bKeys = Object.keys(b);
     if (aKeys.length !== bKeys.length) {
-      return false
+      return false;
     }
     return aKeys.every(function (key) {
       var aVal = a[key];
       var bVal = b[key];
       // check nested equality
       if (typeof aVal === 'object' && typeof bVal === 'object') {
-        return isObjectEqual(aVal, bVal)
+        return isObjectEqual(aVal, bVal);
       }
-      return String(aVal) === String(bVal)
-    })
+      return String(aVal) === String(bVal);
+    });
   }
 
   function isIncludedRoute (current, target) {
@@ -411,16 +411,16 @@
       ) === 0 &&
       (!target.hash || current.hash === target.hash) &&
       queryIncludes(current.query, target.query)
-    )
+    );
   }
 
   function queryIncludes (current, target) {
     for (var key in target) {
       if (!(key in current)) {
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   }
 
   /*  */
@@ -432,11 +432,11 @@
   ) {
     var firstChar = relative.charAt(0);
     if (firstChar === '/') {
-      return relative
+      return relative;
     }
 
     if (firstChar === '?' || firstChar === '#') {
-      return base + relative
+      return base + relative;
     }
 
     var stack = base.split('/');
@@ -464,7 +464,7 @@
       stack.unshift('');
     }
 
-    return stack.join('/')
+    return stack.join('/');
   }
 
   function parsePath (path) {
@@ -487,11 +487,11 @@
       path: path,
       query: query,
       hash: hash
-    }
+    };
   }
 
   function cleanPath (path) {
-    return path.replace(/\/\//g, '/')
+    return path.replace(/\/\//g, '/');
   }
 
   var isarray = Array.isArray || function (arr) {
@@ -550,7 +550,7 @@
       // Ignore already escaped sequences.
       if (escaped) {
         path += escaped[1];
-        continue
+        continue;
       }
 
       var next = str[index];
@@ -595,7 +595,7 @@
       tokens.push(path);
     }
 
-    return tokens
+    return tokens;
   }
 
   /**
@@ -606,7 +606,7 @@
    * @return {!function(Object=, Object=)}
    */
   function compile (str, options) {
-    return tokensToFunction(parse(str, options), options)
+    return tokensToFunction(parse(str, options), options);
   }
 
   /**
@@ -617,8 +617,8 @@
    */
   function encodeURIComponentPretty (str) {
     return encodeURI(str).replace(/[\/?#]/g, function (c) {
-      return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-    })
+      return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+    });
   }
 
   /**
@@ -629,8 +629,8 @@
    */
   function encodeAsterisk (str) {
     return encodeURI(str).replace(/[?#]/g, function (c) {
-      return '%' + c.charCodeAt(0).toString(16).toUpperCase()
-    })
+      return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+    });
   }
 
   /**
@@ -659,7 +659,7 @@
         if (typeof token === 'string') {
           path += token;
 
-          continue
+          continue;
         }
 
         var value = data[token.name];
@@ -672,22 +672,22 @@
               path += token.prefix;
             }
 
-            continue
+            continue;
           } else {
-            throw new TypeError('Expected "' + token.name + '" to be defined')
+            throw new TypeError('Expected "' + token.name + '" to be defined');
           }
         }
 
         if (isarray(value)) {
           if (!token.repeat) {
-            throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+            throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`');
           }
 
           if (value.length === 0) {
             if (token.optional) {
-              continue
+              continue;
             } else {
-              throw new TypeError('Expected "' + token.name + '" to not be empty')
+              throw new TypeError('Expected "' + token.name + '" to not be empty');
             }
           }
 
@@ -695,26 +695,26 @@
             segment = encode(value[j]);
 
             if (!matches[i].test(segment)) {
-              throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+              throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`');
             }
 
             path += (j === 0 ? token.prefix : token.delimiter) + segment;
           }
 
-          continue
+          continue;
         }
 
         segment = token.asterisk ? encodeAsterisk(value) : encode(value);
 
         if (!matches[i].test(segment)) {
-          throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+          throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"');
         }
 
         path += token.prefix + segment;
       }
 
-      return path
-    }
+      return path;
+    };
   }
 
   /**
@@ -724,7 +724,7 @@
    * @return {string}
    */
   function escapeString (str) {
-    return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+    return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1');
   }
 
   /**
@@ -734,7 +734,7 @@
    * @return {string}
    */
   function escapeGroup (group) {
-    return group.replace(/([=!:$\/()])/g, '\\$1')
+    return group.replace(/([=!:$\/()])/g, '\\$1');
   }
 
   /**
@@ -746,7 +746,7 @@
    */
   function attachKeys (re, keys) {
     re.keys = keys;
-    return re
+    return re;
   }
 
   /**
@@ -756,7 +756,7 @@
    * @return {string}
    */
   function flags (options) {
-    return options && options.sensitive ? '' : 'i'
+    return options && options.sensitive ? '' : 'i';
   }
 
   /**
@@ -785,7 +785,7 @@
       }
     }
 
-    return attachKeys(path, keys)
+    return attachKeys(path, keys);
   }
 
   /**
@@ -805,7 +805,7 @@
 
     var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
 
-    return attachKeys(regexp, keys)
+    return attachKeys(regexp, keys);
   }
 
   /**
@@ -817,7 +817,7 @@
    * @return {!RegExp}
    */
   function stringToRegexp (path, keys, options) {
-    return tokensToRegExp(parse(path, options), keys, options)
+    return tokensToRegExp(parse(path, options), keys, options);
   }
 
   /**
@@ -889,7 +889,7 @@
       route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)';
     }
 
-    return attachKeys(new RegExp('^' + route, flags(options)), keys)
+    return attachKeys(new RegExp('^' + route, flags(options)), keys);
   }
 
   /**
@@ -913,14 +913,14 @@
     options = options || {};
 
     if (path instanceof RegExp) {
-      return regexpToRegexp(path, /** @type {!Array} */ (keys))
+      return regexpToRegexp(path, /** @type {!Array} */ (keys));
     }
 
     if (isarray(path)) {
-      return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+      return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options);
     }
 
-    return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+    return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options);
   }
   pathToRegexp_1.parse = parse_1;
   pathToRegexp_1.compile = compile_1;
@@ -947,13 +947,13 @@
       // and fix #3106 so that you can work with location descriptor object having params.pathMatch equal to empty string
       if (typeof params.pathMatch === 'string') { params[0] = params.pathMatch; }
 
-      return filler(params, { pretty: true })
+      return filler(params, { pretty: true });
     } catch (e) {
       {
         // Fix #3072 no warn if `pathMatch` is string
-        warn(typeof params.pathMatch === 'string', ("missing param for " + routeMsg + ": " + (e.message)));
+        warn(typeof params.pathMatch === 'string', ('missing param for ' + routeMsg + ': ' + (e.message)));
       }
-      return ''
+      return '';
     } finally {
       // delete the 0 if it was added
       delete params[0];
@@ -971,14 +971,14 @@
     var next = typeof raw === 'string' ? { path: raw } : raw;
     // named target
     if (next._normalized) {
-      return next
+      return next;
     } else if (next.name) {
       next = extend({}, raw);
       var params = next.params;
       if (params && typeof params === 'object') {
         next.params = extend({}, params);
       }
-      return next
+      return next;
     }
 
     // relative params
@@ -991,11 +991,11 @@
         next.params = params$1;
       } else if (current.matched.length) {
         var rawPath = current.matched[current.matched.length - 1].path;
-        next.path = fillParams(rawPath, params$1, ("path " + (current.path)));
+        next.path = fillParams(rawPath, params$1, ('path ' + (current.path)));
       } else {
-        warn(false, "relative params navigation requires a current route.");
+        warn(false, 'relative params navigation requires a current route.');
       }
-      return next
+      return next;
     }
 
     var parsedPath = parsePath(next.path || '');
@@ -1012,7 +1012,7 @@
 
     var hash = next.hash || parsedPath.hash;
     if (hash && hash.charAt(0) !== '#') {
-      hash = "#" + hash;
+      hash = '#' + hash;
     }
 
     return {
@@ -1020,7 +1020,7 @@
       path: path,
       query: query,
       hash: hash
-    }
+    };
   }
 
   /*  */
@@ -1132,15 +1132,15 @@
 
       if (scopedSlot) {
         if (scopedSlot.length === 1) {
-          return scopedSlot[0]
+          return scopedSlot[0];
         } else if (scopedSlot.length > 1 || !scopedSlot.length) {
           {
             warn(
               false,
-              ("RouterLink with to=\"" + (this.to) + "\" is trying to use a scoped slot but it didn't provide exactly one child. Wrapping the content with a span element.")
+              ('RouterLink with to="' + (this.to) + '" is trying to use a scoped slot but it didn\'t provide exactly one child. Wrapping the content with a span element.')
             );
           }
-          return scopedSlot.length === 0 ? h() : h('span', {}, scopedSlot)
+          return scopedSlot.length === 0 ? h() : h('span', {}, scopedSlot);
         }
       }
 
@@ -1181,27 +1181,27 @@
         }
       }
 
-      return h(this.tag, data, this.$slots.default)
+      return h(this.tag, data, this.$slots.default);
     }
   };
 
   function guardEvent (e) {
     // don't redirect with control keys
-    if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) { return }
+    if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) { return; }
     // don't redirect when preventDefault called
-    if (e.defaultPrevented) { return }
+    if (e.defaultPrevented) { return; }
     // don't redirect on right click
-    if (e.button !== undefined && e.button !== 0) { return }
+    if (e.button !== undefined && e.button !== 0) { return; }
     // don't redirect if `target="_blank"`
     if (e.currentTarget && e.currentTarget.getAttribute) {
       var target = e.currentTarget.getAttribute('target');
-      if (/\b_blank\b/i.test(target)) { return }
+      if (/\b_blank\b/i.test(target)) { return; }
     }
     // this may be a Weex event which doesn't have this method
     if (e.preventDefault) {
       e.preventDefault();
     }
-    return true
+    return true;
   }
 
   function findAnchor (children) {
@@ -1210,10 +1210,10 @@
       for (var i = 0; i < children.length; i++) {
         child = children[i];
         if (child.tag === 'a') {
-          return child
+          return child;
         }
         if (child.children && (child = findAnchor(child.children))) {
-          return child
+          return child;
         }
       }
     }
@@ -1222,7 +1222,7 @@
   var _Vue;
 
   function install (Vue) {
-    if (install.installed && _Vue === Vue) { return }
+    if (install.installed && _Vue === Vue) { return; }
     install.installed = true;
 
     _Vue = Vue;
@@ -1254,11 +1254,11 @@
     });
 
     Object.defineProperty(Vue.prototype, '$router', {
-      get: function get () { return this._routerRoot._router }
+      get: function get () { return this._routerRoot._router; }
     });
 
     Object.defineProperty(Vue.prototype, '$route', {
-      get: function get () { return this._routerRoot._route }
+      get: function get () { return this._routerRoot._route; }
     });
 
     Vue.component('RouterView', View);
@@ -1308,8 +1308,8 @@
         .filter(function (path) { return path && path.charAt(0) !== '*' && path.charAt(0) !== '/'; });
 
       if (found.length > 0) {
-        var pathNames = found.map(function (path) { return ("- " + path); }).join('\n');
-        warn(false, ("Non-nested routes must include a leading slash character. Fix the following routes: \n" + pathNames));
+        var pathNames = found.map(function (path) { return ('- ' + path); }).join('\n');
+        warn(false, ('Non-nested routes must include a leading slash character. Fix the following routes: \n' + pathNames));
       }
     }
 
@@ -1317,7 +1317,7 @@
       pathList: pathList,
       pathMap: pathMap,
       nameMap: nameMap
-    }
+    };
   }
 
   function addRouteRecord (
@@ -1331,12 +1331,12 @@
     var path = route.path;
     var name = route.name;
     {
-      assert(path != null, "\"path\" is required in a route configuration.");
+      assert(path != null, '"path" is required in a route configuration.');
       assert(
         typeof route.component !== 'string',
-        "route config \"component\" for path: " + (String(
+        'route config "component" for path: ' + (String(
           path || name
-        )) + " cannot be a " + "string id. Use an actual component instead."
+        )) + ' cannot be a ' + 'string id. Use an actual component instead.'
       );
     }
 
@@ -1379,17 +1379,17 @@
         ) {
           warn(
             false,
-            "Named Route '" + (route.name) + "' has a default child route. " +
-              "When navigating to this named route (:to=\"{name: '" + (route.name) + "'\"), " +
-              "the default child route will not be rendered. Remove the name from " +
-              "this route and use the name of the default child route for named " +
-              "links instead."
+            'Named Route \'' + (route.name) + '\' has a default child route. ' +
+              'When navigating to this named route (:to="{name: \'' + (route.name) + '\'"), ' +
+              'the default child route will not be rendered. Remove the name from ' +
+              'this route and use the name of the default child route for named ' +
+              'links instead.'
           );
         }
       }
       route.children.forEach(function (child) {
         var childMatchAs = matchAs
-          ? cleanPath((matchAs + "/" + (child.path)))
+          ? cleanPath((matchAs + '/' + (child.path)))
           : undefined;
         addRouteRecord(pathList, pathMap, nameMap, child, record, childMatchAs);
       });
@@ -1407,10 +1407,10 @@
         if ( alias === path) {
           warn(
             false,
-            ("Found an alias with the same value as the path: \"" + path + "\". You have to remove that alias. It will be ignored in development.")
+            ('Found an alias with the same value as the path: "' + path + '". You have to remove that alias. It will be ignored in development.')
           );
           // skip in dev to make it work
-          continue
+          continue;
         }
 
         var aliasRoute = {
@@ -1434,8 +1434,8 @@
       } else if ( !matchAs) {
         warn(
           false,
-          "Duplicate named routes definition: " +
-            "{ name: \"" + name + "\", path: \"" + (record.path) + "\" }"
+          'Duplicate named routes definition: ' +
+            '{ name: "' + name + '", path: "' + (record.path) + '" }'
         );
       }
     }
@@ -1451,12 +1451,12 @@
       regex.keys.forEach(function (key) {
         warn(
           !keys[key.name],
-          ("Duplicate param keys in route with path: \"" + path + "\"")
+          ('Duplicate param keys in route with path: "' + path + '"')
         );
         keys[key.name] = true;
       });
     }
-    return regex
+    return regex;
   }
 
   function normalizePath (
@@ -1465,14 +1465,12 @@
     strict
   ) {
     if (!strict) { path = path.replace(/\/$/, ''); }
-    if (path[0] === '/') { return path }
-    if (parent == null) { return path }
-    return cleanPath(((parent.path) + "/" + path))
+    if (path[0] === '/') { return path; }
+    if (parent == null) { return path; }
+    return cleanPath(((parent.path) + '/' + path));
   }
 
   /*  */
-
-
 
   function createMatcher (
     routes,
@@ -1498,9 +1496,9 @@
       if (name) {
         var record = nameMap[name];
         {
-          warn(record, ("Route with name '" + name + "' does not exist"));
+          warn(record, ('Route with name \'' + name + '\' does not exist'));
         }
-        if (!record) { return _createRoute(null, location) }
+        if (!record) { return _createRoute(null, location); }
         var paramNames = record.regex.keys
           .filter(function (key) { return !key.optional; })
           .map(function (key) { return key.name; });
@@ -1517,20 +1515,20 @@
           }
         }
 
-        location.path = fillParams(record.path, location.params, ("named route \"" + name + "\""));
-        return _createRoute(record, location, redirectedFrom)
+        location.path = fillParams(record.path, location.params, ('named route "' + name + '"'));
+        return _createRoute(record, location, redirectedFrom);
       } else if (location.path) {
         location.params = {};
         for (var i = 0; i < pathList.length; i++) {
           var path = pathList[i];
           var record$1 = pathMap[path];
           if (matchRoute(record$1.regex, location.path, location.params)) {
-            return _createRoute(record$1, location, redirectedFrom)
+            return _createRoute(record$1, location, redirectedFrom);
           }
         }
       }
       // no match
-      return _createRoute(null, location)
+      return _createRoute(null, location);
     }
 
     function redirect (
@@ -1549,10 +1547,10 @@
       if (!redirect || typeof redirect !== 'object') {
         {
           warn(
-            false, ("invalid redirect option: " + (JSON.stringify(redirect)))
+            false, ('invalid redirect option: ' + (JSON.stringify(redirect)))
           );
         }
-        return _createRoute(null, location)
+        return _createRoute(null, location);
       }
 
       var re = redirect;
@@ -1569,7 +1567,7 @@
         // resolved named direct
         var targetRecord = nameMap[name];
         {
-          assert(targetRecord, ("redirect failed: named route \"" + name + "\" not found."));
+          assert(targetRecord, ('redirect failed: named route "' + name + '" not found.'));
         }
         return match({
           _normalized: true,
@@ -1577,24 +1575,24 @@
           query: query,
           hash: hash,
           params: params
-        }, undefined, location)
+        }, undefined, location);
       } else if (path) {
         // 1. resolve relative redirect
         var rawPath = resolveRecordPath(path, record);
         // 2. resolve params
-        var resolvedPath = fillParams(rawPath, params, ("redirect route with path \"" + rawPath + "\""));
+        var resolvedPath = fillParams(rawPath, params, ('redirect route with path "' + rawPath + '"'));
         // 3. rematch with existing query and hash
         return match({
           _normalized: true,
           path: resolvedPath,
           query: query,
           hash: hash
-        }, undefined, location)
+        }, undefined, location);
       } else {
         {
-          warn(false, ("invalid redirect option: " + (JSON.stringify(redirect))));
+          warn(false, ('invalid redirect option: ' + (JSON.stringify(redirect))));
         }
-        return _createRoute(null, location)
+        return _createRoute(null, location);
       }
     }
 
@@ -1603,7 +1601,7 @@
       location,
       matchAs
     ) {
-      var aliasedPath = fillParams(matchAs, location.params, ("aliased route with path \"" + matchAs + "\""));
+      var aliasedPath = fillParams(matchAs, location.params, ('aliased route with path "' + matchAs + '"'));
       var aliasedMatch = match({
         _normalized: true,
         path: aliasedPath
@@ -1612,9 +1610,9 @@
         var matched = aliasedMatch.matched;
         var aliasedRecord = matched[matched.length - 1];
         location.params = aliasedMatch.params;
-        return _createRoute(aliasedRecord, location)
+        return _createRoute(aliasedRecord, location);
       }
-      return _createRoute(null, location)
+      return _createRoute(null, location);
     }
 
     function _createRoute (
@@ -1623,18 +1621,18 @@
       redirectedFrom
     ) {
       if (record && record.redirect) {
-        return redirect(record, redirectedFrom || location)
+        return redirect(record, redirectedFrom || location);
       }
       if (record && record.matchAs) {
-        return alias(record, location, record.matchAs)
+        return alias(record, location, record.matchAs);
       }
-      return createRoute(record, location, redirectedFrom, router)
+      return createRoute(record, location, redirectedFrom, router);
     }
 
     return {
       match: match,
       addRoutes: addRoutes
-    }
+    };
   }
 
   function matchRoute (
@@ -1645,9 +1643,9 @@
     var m = path.match(regex);
 
     if (!m) {
-      return false
+      return false;
     } else if (!params) {
-      return true
+      return true;
     }
 
     for (var i = 1, len = m.length; i < len; ++i) {
@@ -1659,11 +1657,11 @@
       }
     }
 
-    return true
+    return true;
   }
 
   function resolveRecordPath (path, record) {
-    return resolvePath(path, record.parent ? record.parent.path : '/', true)
+    return resolvePath(path, record.parent ? record.parent.path : '/', true);
   }
 
   /*  */
@@ -1675,17 +1673,17 @@
       : Date;
 
   function genStateKey () {
-    return Time.now().toFixed(3)
+    return Time.now().toFixed(3);
   }
 
   var _key = genStateKey();
 
   function getStateKey () {
-    return _key
+    return _key;
   }
 
   function setStateKey (key) {
-    return (_key = key)
+    return (_key = key);
   }
 
   /*  */
@@ -1711,7 +1709,7 @@
     window.addEventListener('popstate', handlePopState);
     return function () {
       window.removeEventListener('popstate', handlePopState);
-    }
+    };
   }
 
   function handleScroll (
@@ -1721,16 +1719,16 @@
     isPop
   ) {
     if (!router.app) {
-      return
+      return;
     }
 
     var behavior = router.options.scrollBehavior;
     if (!behavior) {
-      return
+      return;
     }
 
     {
-      assert(typeof behavior === 'function', "scrollBehavior must be a function");
+      assert(typeof behavior === 'function', 'scrollBehavior must be a function');
     }
 
     // wait until re-render finishes before scrolling
@@ -1744,7 +1742,7 @@
       );
 
       if (!shouldScroll) {
-        return
+        return;
       }
 
       if (typeof shouldScroll.then === 'function') {
@@ -1783,7 +1781,7 @@
   function getScrollPosition () {
     var key = getStateKey();
     if (key) {
-      return positionStore[key]
+      return positionStore[key];
     }
   }
 
@@ -1794,29 +1792,29 @@
     return {
       x: elRect.left - docRect.left - offset.x,
       y: elRect.top - docRect.top - offset.y
-    }
+    };
   }
 
   function isValidPosition (obj) {
-    return isNumber(obj.x) || isNumber(obj.y)
+    return isNumber(obj.x) || isNumber(obj.y);
   }
 
   function normalizePosition (obj) {
     return {
       x: isNumber(obj.x) ? obj.x : window.pageXOffset,
       y: isNumber(obj.y) ? obj.y : window.pageYOffset
-    }
+    };
   }
 
   function normalizeOffset (obj) {
     return {
       x: isNumber(obj.x) ? obj.x : 0,
       y: isNumber(obj.y) ? obj.y : 0
-    }
+    };
   }
 
   function isNumber (v) {
-    return typeof v === 'number'
+    return typeof v === 'number';
   }
 
   var hashStartsWithNumberRE = /^#\d/;
@@ -1862,10 +1860,10 @@
         ua.indexOf('Chrome') === -1 &&
         ua.indexOf('Windows Phone') === -1
       ) {
-        return false
+        return false;
       }
 
-      return window.history && typeof window.history.pushState === 'function'
+      return window.history && typeof window.history.pushState === 'function';
     })();
 
   function pushState (url, replace) {
@@ -1944,7 +1942,7 @@
           });
 
           var reject = once(function (reason) {
-            var msg = "Failed to resolve async component " + key + ": " + reason;
+            var msg = 'Failed to resolve async component ' + key + ': ' + reason;
              warn(false, msg);
             if (!error) {
               error = isError(reason)
@@ -1975,7 +1973,7 @@
       });
 
       if (!hasAsync) { next(); }
-    }
+    };
   }
 
   function flatMapComponents (
@@ -1987,12 +1985,12 @@
         m.components[key],
         m.instances[key],
         m, key
-      ); })
-    }))
+      ); });
+    }));
   }
 
   function flatten (arr) {
-    return Array.prototype.concat.apply([], arr)
+    return Array.prototype.concat.apply([], arr);
   }
 
   var hasSymbol =
@@ -2000,7 +1998,7 @@
     typeof Symbol.toStringTag === 'symbol';
 
   function isESModule (obj) {
-    return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module')
+    return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module');
   }
 
   // in Webpack 2, require.ensure now also returns a Promise
@@ -2013,10 +2011,10 @@
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];
 
-      if (called) { return }
+      if (called) { return; }
       called = true;
-      return fn.apply(this, args)
-    }
+      return fn.apply(this, args);
+    };
   }
 
   var NavigationFailureType = {
@@ -2031,8 +2029,8 @@
       from,
       to,
       NavigationFailureType.redirected,
-      ("Redirected from \"" + (from.fullPath) + "\" to \"" + (stringifyRoute(to)) + "\" via a navigation guard.")
-    )
+      ('Redirected from "' + (from.fullPath) + '" to "' + (stringifyRoute(to)) + '" via a navigation guard.')
+    );
   }
 
   function createNavigationDuplicatedError (from, to) {
@@ -2040,8 +2038,8 @@
       from,
       to,
       NavigationFailureType.duplicated,
-      ("Avoided redundant navigation to current location: \"" + (from.fullPath) + "\".")
-    )
+      ('Avoided redundant navigation to current location: "' + (from.fullPath) + '".')
+    );
   }
 
   function createNavigationCancelledError (from, to) {
@@ -2049,8 +2047,8 @@
       from,
       to,
       NavigationFailureType.cancelled,
-      ("Navigation cancelled from \"" + (from.fullPath) + "\" to \"" + (to.fullPath) + "\" with a new navigation.")
-    )
+      ('Navigation cancelled from "' + (from.fullPath) + '" to "' + (to.fullPath) + '" with a new navigation.')
+    );
   }
 
   function createNavigationAbortedError (from, to) {
@@ -2058,8 +2056,8 @@
       from,
       to,
       NavigationFailureType.aborted,
-      ("Navigation aborted from \"" + (from.fullPath) + "\" to \"" + (to.fullPath) + "\" via a navigation guard.")
-    )
+      ('Navigation aborted from "' + (from.fullPath) + '" to "' + (to.fullPath) + '" via a navigation guard.')
+    );
   }
 
   function createRouterError (from, to, type, message) {
@@ -2069,19 +2067,19 @@
     error.to = to;
     error.type = type;
 
-    return error
+    return error;
   }
 
   var propertiesToLog = ['params', 'query', 'hash'];
 
   function stringifyRoute (to) {
-    if (typeof to === 'string') { return to }
-    if ('path' in to) { return to.path }
+    if (typeof to === 'string') { return to; }
+    if ('path' in to) { return to.path; }
     var location = {};
     propertiesToLog.forEach(function (key) {
       if (key in to) { location[key] = to[key]; }
     });
-    return JSON.stringify(location, null, 2)
+    return JSON.stringify(location, null, 2);
   }
 
   /*  */
@@ -2185,7 +2183,7 @@
       route.matched.length === current.matched.length
     ) {
       this.ensureURL();
-      return abort(createNavigationDuplicatedError(current, route))
+      return abort(createNavigationDuplicatedError(current, route));
     }
 
     var ref = resolveQueue(
@@ -2212,7 +2210,7 @@
     this.pending = route;
     var iterator = function (hook, next) {
       if (this$1.pending !== route) {
-        return abort(createNavigationCancelledError(current, route))
+        return abort(createNavigationCancelledError(current, route));
       }
       try {
         hook(route, current, function (to) {
@@ -2254,7 +2252,7 @@
       var queue = enterGuards.concat(this$1.router.resolveHooks);
       runQueue(queue, iterator, function () {
         if (this$1.pending !== route) {
-          return abort(createNavigationCancelledError(current, route))
+          return abort(createNavigationCancelledError(current, route));
         }
         this$1.pending = null;
         onComplete(route);
@@ -2302,7 +2300,7 @@
       base = '/' + base;
     }
     // remove trailing slash
-    return base.replace(/\/$/, '')
+    return base.replace(/\/$/, '');
   }
 
   function resolveQueue (
@@ -2313,14 +2311,14 @@
     var max = Math.max(current.length, next.length);
     for (i = 0; i < max; i++) {
       if (current[i] !== next[i]) {
-        break
+        break;
       }
     }
     return {
       updated: next.slice(0, i),
       activated: next.slice(i),
       deactivated: current.slice(i)
-    }
+    };
   }
 
   function extractGuards (
@@ -2334,10 +2332,10 @@
       if (guard) {
         return Array.isArray(guard)
           ? guard.map(function (guard) { return bind(guard, instance, match, key); })
-          : bind(guard, instance, match, key)
+          : bind(guard, instance, match, key);
       }
     });
-    return flatten(reverse ? guards.reverse() : guards)
+    return flatten(reverse ? guards.reverse() : guards);
   }
 
   function extractGuard (
@@ -2348,22 +2346,22 @@
       // extend now so that global mixins are applied.
       def = _Vue.extend(def);
     }
-    return def.options[key]
+    return def.options[key];
   }
 
   function extractLeaveGuards (deactivated) {
-    return extractGuards(deactivated, 'beforeRouteLeave', bindGuard, true)
+    return extractGuards(deactivated, 'beforeRouteLeave', bindGuard, true);
   }
 
   function extractUpdateHooks (updated) {
-    return extractGuards(updated, 'beforeRouteUpdate', bindGuard)
+    return extractGuards(updated, 'beforeRouteUpdate', bindGuard);
   }
 
   function bindGuard (guard, instance) {
     if (instance) {
       return function boundRouteGuard () {
-        return guard.apply(instance, arguments)
-      }
+        return guard.apply(instance, arguments);
+      };
     }
   }
 
@@ -2376,9 +2374,9 @@
       activated,
       'beforeRouteEnter',
       function (guard, _, match, key) {
-        return bindEnterGuard(guard, match, key, cbs, isValid)
+        return bindEnterGuard(guard, match, key, cbs, isValid);
       }
-    )
+    );
   }
 
   function bindEnterGuard (
@@ -2401,8 +2399,8 @@
           });
         }
         next(cb);
-      })
-    }
+      });
+    };
   }
 
   function poll (
@@ -2425,7 +2423,7 @@
 
   /*  */
 
-  var HTML5History = /*@__PURE__*/(function (History) {
+  var HTML5History = /* @__PURE__*/(function (History) {
     function HTML5History (router, base) {
       History.call(this, router, base);
 
@@ -2440,7 +2438,7 @@
       var this$1 = this;
 
       if (this.listeners.length > 0) {
-        return
+        return;
       }
 
       var router = this.router;
@@ -2458,7 +2456,7 @@
         // history route not updated since async guard at the same time.
         var location = getLocation(this$1.base);
         if (this$1.current === START && location === this$1._startLocation) {
-          return
+          return;
         }
 
         this$1.transitionTo(location, function (route) {
@@ -2509,7 +2507,7 @@
     };
 
     HTML5History.prototype.getCurrentLocation = function getCurrentLocation () {
-      return getLocation(this.base)
+      return getLocation(this.base);
     };
 
     return HTML5History;
@@ -2520,17 +2518,17 @@
     if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
       path = path.slice(base.length);
     }
-    return (path || '/') + window.location.search + window.location.hash
+    return (path || '/') + window.location.search + window.location.hash;
   }
 
   /*  */
 
-  var HashHistory = /*@__PURE__*/(function (History) {
+  var HashHistory = /* @__PURE__*/(function (History) {
     function HashHistory (router, base, fallback) {
       History.call(this, router, base);
       // check history fallback deeplinking
       if (fallback && checkFallback(this.base)) {
-        return
+        return;
       }
       ensureSlash();
     }
@@ -2545,7 +2543,7 @@
       var this$1 = this;
 
       if (this.listeners.length > 0) {
-        return
+        return;
       }
 
       var router = this.router;
@@ -2559,7 +2557,7 @@
       var handleRoutingEvent = function () {
         var current = this$1.current;
         if (!ensureSlash()) {
-          return
+          return;
         }
         this$1.transitionTo(getHash(), function (route) {
           if (supportsScroll) {
@@ -2624,7 +2622,7 @@
     };
 
     HashHistory.prototype.getCurrentLocation = function getCurrentLocation () {
-      return getHash()
+      return getHash();
     };
 
     return HashHistory;
@@ -2634,17 +2632,17 @@
     var location = getLocation(base);
     if (!/^\/#/.test(location)) {
       window.location.replace(cleanPath(base + '/#' + location));
-      return true
+      return true;
     }
   }
 
   function ensureSlash () {
     var path = getHash();
     if (path.charAt(0) === '/') {
-      return true
+      return true;
     }
     replaceHash('/' + path);
-    return false
+    return false;
   }
 
   function getHash () {
@@ -2653,7 +2651,7 @@
     var href = window.location.href;
     var index = href.indexOf('#');
     // empty path
-    if (index < 0) { return '' }
+    if (index < 0) { return ''; }
 
     href = href.slice(index + 1);
     // decode the hash but not the search or hash
@@ -2669,14 +2667,14 @@
       href = decodeURI(href.slice(0, searchIndex)) + href.slice(searchIndex);
     }
 
-    return href
+    return href;
   }
 
   function getUrl (path) {
     var href = window.location.href;
     var i = href.indexOf('#');
     var base = i >= 0 ? href.slice(0, i) : href;
-    return (base + "#" + path)
+    return (base + '#' + path);
   }
 
   function pushHash (path) {
@@ -2697,7 +2695,7 @@
 
   /*  */
 
-  var AbstractHistory = /*@__PURE__*/(function (History) {
+  var AbstractHistory = /* @__PURE__*/(function (History) {
     function AbstractHistory (router, base) {
       History.call(this, router, base);
       this.stack = [];
@@ -2740,7 +2738,7 @@
 
       var targetIndex = this.index + n;
       if (targetIndex < 0 || targetIndex >= this.stack.length) {
-        return
+        return;
       }
       var route = this.stack[targetIndex];
       this.confirmTransition(
@@ -2759,7 +2757,7 @@
 
     AbstractHistory.prototype.getCurrentLocation = function getCurrentLocation () {
       var current = this.stack[this.stack.length - 1];
-      return current ? current.fullPath : '/'
+      return current ? current.fullPath : '/';
     };
 
     AbstractHistory.prototype.ensureURL = function ensureURL () {
@@ -2770,8 +2768,6 @@
   }(History));
 
   /*  */
-
-
 
   var VueRouter = function VueRouter (options) {
     if ( options === void 0 ) options = {};
@@ -2797,16 +2793,16 @@
     switch (mode) {
       case 'history':
         this.history = new HTML5History(this, options.base);
-        break
+        break;
       case 'hash':
         this.history = new HashHistory(this, options.base, this.fallback);
-        break
+        break;
       case 'abstract':
         this.history = new AbstractHistory(this, options.base);
-        break
+        break;
       default:
         {
-          assert(false, ("invalid mode: " + mode));
+          assert(false, ('invalid mode: ' + mode));
         }
     }
   };
@@ -2818,11 +2814,11 @@
     current,
     redirectedFrom
   ) {
-    return this.matcher.match(raw, current, redirectedFrom)
+    return this.matcher.match(raw, current, redirectedFrom);
   };
 
   prototypeAccessors.currentRoute.get = function () {
-    return this.history && this.history.current
+    return this.history && this.history.current;
   };
 
   VueRouter.prototype.init = function init (app /* Vue component instance */) {
@@ -2830,8 +2826,8 @@
 
      assert(
       install.installed,
-      "not installed. Make sure to call `Vue.use(VueRouter)` " +
-      "before creating root instance."
+      'not installed. Make sure to call `Vue.use(VueRouter)` ' +
+      'before creating root instance.'
     );
 
     this.apps.push(app);
@@ -2856,7 +2852,7 @@
     // main app previously initialized
     // return as we don't need to set up new history listener
     if (this.app) {
-      return
+      return;
     }
 
     this.app = app;
@@ -2878,15 +2874,15 @@
   };
 
   VueRouter.prototype.beforeEach = function beforeEach (fn) {
-    return registerHook(this.beforeHooks, fn)
+    return registerHook(this.beforeHooks, fn);
   };
 
   VueRouter.prototype.beforeResolve = function beforeResolve (fn) {
-    return registerHook(this.resolveHooks, fn)
+    return registerHook(this.resolveHooks, fn);
   };
 
   VueRouter.prototype.afterEach = function afterEach (fn) {
-    return registerHook(this.afterHooks, fn)
+    return registerHook(this.afterHooks, fn);
   };
 
   VueRouter.prototype.onReady = function onReady (cb, errorCb) {
@@ -2904,7 +2900,7 @@
     if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
       return new Promise(function (resolve, reject) {
         this$1.history.push(location, resolve, reject);
-      })
+      });
     } else {
       this.history.push(location, onComplete, onAbort);
     }
@@ -2917,7 +2913,7 @@
     if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
       return new Promise(function (resolve, reject) {
         this$1.history.replace(location, resolve, reject);
-      })
+      });
     } else {
       this.history.replace(location, onComplete, onAbort);
     }
@@ -2942,13 +2938,13 @@
         : this.resolve(to).route
       : this.currentRoute;
     if (!route) {
-      return []
+      return [];
     }
     return [].concat.apply([], route.matched.map(function (m) {
       return Object.keys(m.components).map(function (key) {
-        return m.components[key]
-      })
-    }))
+        return m.components[key];
+      });
+    }));
   };
 
   VueRouter.prototype.resolve = function resolve (
@@ -2974,7 +2970,7 @@
       // for backwards compat
       normalizedTo: location,
       resolved: route
-    }
+    };
   };
 
   VueRouter.prototype.addRoutes = function addRoutes (routes) {
@@ -2991,12 +2987,12 @@
     return function () {
       var i = list.indexOf(fn);
       if (i > -1) { list.splice(i, 1); }
-    }
+    };
   }
 
   function createHref (base, fullPath, mode) {
     var path = mode === 'hash' ? '#' + fullPath : fullPath;
-    return base ? cleanPath(base + '/' + path) : path
+    return base ? cleanPath(base + '/' + path) : path;
   }
 
   VueRouter.install = install;

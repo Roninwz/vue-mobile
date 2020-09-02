@@ -5,7 +5,7 @@
  * @param {*} 参数
  */
 export const verify = (param) => {
-  return param !== undefined && param !== null && param !== "";
+  return param !== undefined && param !== null && param !== '';
 };
 
 /**
