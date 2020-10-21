@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import demoRouter from './demoRouter';
+import videoRouter from './videoRouter';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -21,7 +21,7 @@ const router = new VueRouter({
       },
       component: () => import('@/pages/home'),
     },
-    ...demoRouter,
+    ...videoRouter,
   ],
 });
 
