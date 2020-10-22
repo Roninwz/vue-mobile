@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "start": "vue-cli-service serve --port 8099 --mode localdev --open",
     "localdev": "vue-cli-service serve --port 8099 --mode localdev --open",
     "dev": "vue-cli-service serve --port 8099 --mode development --open",
     "test": "vue-cli-service serve --port 8099 --mode testing --open",

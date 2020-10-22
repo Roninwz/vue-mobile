@@ -17,11 +17,54 @@
       icon-class="titile"
       icon-style="width:100px;height:100px;"
     />
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
+    <p>ddddddddddddddddddd</p>
   </div>
 </template>
 
 <script>
-// import { verifyIsDate } from "@/utils/tools";
+  import { listenerScrollPageBottom } from '@/utils/tools';
   import momentDateUtil from '@/utils/momentDateUtil';
   import moment from 'moment';
   export default {
@@ -42,13 +85,18 @@
     created() {
       this.testData();
     },
-    mounted() {},
+    mounted() {
+      window.addEventListener('scroll', listenerScrollPageBottom, false);
+    },
     methods: {
       testData() {
         console.log('my console moment : ', moment().dayOfYear());
         console.log('my console moment : ', moment().daysInMonth());
         console.log('my console moment : ', moment().get('year'));
-        console.log('my console getDateDiffMonth : ', momentDateUtil.formatSubtractDate('2020-05-09', 3));
+        console.log(
+          'my console getDateDiffMonth : ',
+          momentDateUtil.formatSubtractDate('2020-05-09', 3)
+        );
       },
       getData() {},
       changeChartOptions() {
