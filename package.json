@@ -17,6 +17,21 @@
     "build:prod": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitee.com:roninwz/vue-mobile.git"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "core-js": "^3.6.5",
