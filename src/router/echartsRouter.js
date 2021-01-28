@@ -20,4 +20,14 @@ export default [
     },
     component: () => import('@/pages/echarts/BrokenLineSmoothCharts'),
   },
+  {
+    path: '/echarts/twoSmoothBrokenLineCharts',
+    name: 'TwoSmoothBrokenLineCharts',
+    meta: {
+      keepAlive: false,
+      title: '双平滑折线图',
+      hasBack: true,
+    },
+    component: () => import('@/pages/echarts/TwoSmoothBrokenLineCharts'),
+  },
 ];

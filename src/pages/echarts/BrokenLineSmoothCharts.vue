@@ -1,5 +1,5 @@
 <template>
-<!-- 平滑单折线图 -->
+  <!-- 平滑单折线图 -->
   <div
     id="bloodPressureCharts"
     class="myChart"
