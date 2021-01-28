@@ -33,6 +33,10 @@ const errorHandler = (error, vm) => {
 
 Vue.config.errorHandler = errorHandler;
 
+// import clipboard from 'clipboard';
+// // 注册到vue原型上
+// Vue.prototype.clipboard = clipboard;
+
 // svg icon
 import '@/icons';
 

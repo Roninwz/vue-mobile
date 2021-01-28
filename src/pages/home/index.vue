@@ -17,49 +17,15 @@
       icon-class="titile"
       icon-style="width:100px;height:100px;"
     />
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
-    <p>ddddddddddddddddddd</p>
+    <div class="sn Lfll Lmr20">
+      订单编号：
+      <span
+        data-clipboard-action="copy"
+        class="cobyOrderSn"
+        :data-clipboard-text="orderData"
+        @click="copyLink"
+      >{{ orderData }}</span>
+    </div>
   </div>
 </template>
 
@@ -67,6 +33,7 @@
   import { listenerScrollPageBottom } from '@/utils/tools';
   import momentDateUtil from '@/utils/momentDateUtil';
   import moment from 'moment';
+  import ClipboardJS from 'clipboard';
   export default {
     components: {},
     data() {
@@ -77,6 +44,7 @@
           width: '100px',
           height: '100px',
         },
+        orderData: 'dddd',
         name: '',
       };
     },
@@ -89,6 +57,15 @@
       window.addEventListener('scroll', listenerScrollPageBottom, false);
     },
     methods: {
+      copyLink() {
+        const clipboard = new ClipboardJS('.cobyOrderSn');
+        clipboard.on('success', function () {
+          console.log('my console复制成功 : ');
+        });
+        clipboard.on('error', function () {
+          console.log('my console复制失败 : ');
+        });
+      },
       testData() {
         console.log('my console moment : ', moment().dayOfYear());
         console.log('my console moment : ', moment().daysInMonth());
