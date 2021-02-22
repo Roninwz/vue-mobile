@@ -38,14 +38,15 @@
     components: {},
     data() {
       return {
+        myNum: [1, 2, 3],
         date: new Date(),
         number: 1.222,
         icon: {
           width: '100px',
-          height: '100px',
+          height: '100px'
         },
         orderData: 'dddd',
-        name: '',
+        name: ''
       };
     },
     computed: {},
@@ -54,15 +55,18 @@
       this.testData();
     },
     mounted() {
+      this.$nextTick(() => {
+        this.myNum = [4, 5, 6];
+      });
       window.addEventListener('scroll', listenerScrollPageBottom, false);
     },
     methods: {
       copyLink() {
         const clipboard = new ClipboardJS('.cobyOrderSn');
-        clipboard.on('success', function () {
+        clipboard.on('success', function() {
           console.log('my console复制成功 : ');
         });
-        clipboard.on('error', function () {
+        clipboard.on('error', function() {
           console.log('my console复制失败 : ');
         });
       },
@@ -81,8 +85,8 @@
       },
       longpress() {
         console.log('my console longpress : ');
-      },
-    },
+      }
+    }
   };
 </script>
 

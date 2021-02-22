@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import videoRouter from './videoRouter';
 import echartsRouter from './echartsRouter';
+import demoRouter from './demoRouter';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -23,7 +24,8 @@ const router = new VueRouter({
       component: () => import('@/pages/home'),
     },
     ...videoRouter,
-    ...echartsRouter
+    ...echartsRouter,
+    ...demoRouter
   ],
 });
 
