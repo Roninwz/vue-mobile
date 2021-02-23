@@ -44,3 +44,39 @@ export const listenerScrollPageBottom = () => {
   return isBottom;
 };
 
+
+// 获取当前环境
+export const isWeiXinEnvironment = () => {
+  // 判断当前环境是否在微信中
+  if (navigator.userAgent.toLowerCase().includes('micromessenger')) {
+    return true;
+  }
+  return false;
+};
+
+// 判断当前环境是否是android
+export const isAndroidEnvironment = () => {
+  let ua = navigator.userAgent.toLowerCase();
+  if (/iphone|ipad|ipod/.test(ua)) {
+    return false;
+  } else if (/android/.test(ua)) {
+    return true;
+  }
+};
+
+
+/**
+ * 复制内容到粘贴板
+ * content : 需要复制的内容
+ * callback : 回调函数
+ */
+export const copyToClip = function (content, callback) {
+  var aux = document.createElement('input')
+  aux.setAttribute('value', content)
+  document.body.appendChild(aux)
+  aux.select()
+  document.execCommand('copy')
+  document.body.removeChild(aux)
+  callback()
+}
+

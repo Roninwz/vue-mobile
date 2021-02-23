@@ -20,3 +20,43 @@ export const getBase64Image = function (imgurl) {
     };
   });
 };
+
+/**
+ * base64转Blob
+ * @param base64
+ * @returns {Blob}
+ */
+export const base64toBlob = (base64) => {
+  const arr = base64.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type: mime });
+};
+/**
+ * blob转URL
+ * @param file
+ * @returns {string|null}
+ */
+export const getObjectURL = (file) => {
+  if (window.createObjectURL !== undefined) { // basic
+    return window.createObjectURL(file);
+  } else if (window.URL !== undefined) { // mozilla(firefox)
+    return window.URL.createObjectURL(file);
+  } else if (window.webkitURL !== undefined) { // webkit or chrome
+    return window.webkitURL.createObjectURL(file);
+  }
+  return null;
+};
+
+/**
+ * base64转URL
+ * @param base64
+ * @returns {string|null}
+ */
+export const base64ToUrl = base64 => getObjectURL(base64toBlob(base64));
+
