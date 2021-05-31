@@ -26,7 +26,7 @@
  * <Video
         width="100%"
         height="146"
-        video-url="https://manniu-app-production.oss-cn-shanghai.aliyuncs.com/czone/child-health/ad001.mp4"
+        video-url="https://baidu.com/czone/child-health/ad001.mp4"
       />
  */
   export default {
