@@ -88,7 +88,8 @@ function wechatJsApiPay(params, orderNo, id) {
 // **************  微信内唤起微信支付 --- 结束 ***************
 
 /**
- * @description: 微信内支付
+ * @description: 微信内支付 -- 使用的是微信的jssdk的方法
+ * @doc 微信jssdk文档地址：https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html
  * @param {Number} timestamp 支付签名时间戳
  * @param {String} nonce_str 支付签名随机串
  * @param {String} prepay_id 统一支付接口返回的prepay_id
@@ -118,5 +119,35 @@ export function payInWechat(data) {
     };
     console.log("payParam", payParam);
     window.wx.chooseWXPay(payParam);
+  });
+}
+
+/**
+ * 微信内支付--  使用的是微信支付单独的方法
+ * https://pay.weixin.qq.com/index.php/core/home/login?return_url=%2F
+ * @param {*} obj
+ * @returns
+ */
+export function getWeChatpay(obj) {
+  return new Promise(resolve => {
+    WeixinJSBridge.invoke(
+      "getBrandWCPayRequest",
+      {
+        appId: obj.wechatappid, //公众号名称，由商户传入
+        timeStamp: obj.timestamp, //时间戳，自1970年以来的秒数
+        nonceStr: obj.nonceStr, //随机串
+        package: `prepay_id=${obj.prepayId}`,
+        signType: "MD5", //微信签名方式：
+        paySign: obj.paysign //微信签名
+      },
+      function(res) {
+        console.log("微信支付回调------", res);
+        resolve(res);
+        // if(res.err_msg == "get_brand_wcpay_request:ok" ){
+        // // 使用以上方式判断前端返回,微信团队郑重提示：
+        //       //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+        //     }
+      }
+    );
   });
 }
