@@ -18,6 +18,39 @@ export const verifyIsNumber = (param) => {
   return typeof param === 'number' && !isNaN(param);
 };
 
+// 判断当前环境是否在微信中
+export const isWeiXinEnvironment = () => {
+  if (navigator.userAgent.toLowerCase().includes('micromessenger')) {
+    return true;
+  }
+  return false;
+};
+
+// 判断当前环境是否是android
+export const isAndroidEnvironment = () => {
+  const ua = navigator.userAgent.toLowerCase();
+  if (/iphone|ipad|ipod/.test(ua)) {
+    return false;
+  } else if (/android/.test(ua)) {
+    return true;
+  }
+};
+
+/**
+ * 复制内容到粘贴板
+ * content : 需要复制的内容
+ * callback : 回调函数
+ */
+export const copyToClip = function (content, callback) {
+  var aux = document.createElement('input');
+  aux.setAttribute('value', content);
+  document.body.appendChild(aux);
+  aux.select();
+  document.execCommand('copy');
+  document.body.removeChild(aux);
+  callback();
+};
+
 /**
  * 监听滚动条是否滚动到底部
  * 使用方式:
@@ -39,44 +72,6 @@ export const listenerScrollPageBottom = () => {
     // 到了这个就可以进行业务逻辑加载后台数据了
     console.log('到了底部');
     isBottom = true;
-    // 分享浏览埋点
   }
   return isBottom;
 };
-
-
-// 获取当前环境
-export const isWeiXinEnvironment = () => {
-  // 判断当前环境是否在微信中
-  if (navigator.userAgent.toLowerCase().includes('micromessenger')) {
-    return true;
-  }
-  return false;
-};
-
-// 判断当前环境是否是android
-export const isAndroidEnvironment = () => {
-  let ua = navigator.userAgent.toLowerCase();
-  if (/iphone|ipad|ipod/.test(ua)) {
-    return false;
-  } else if (/android/.test(ua)) {
-    return true;
-  }
-};
-
-
-/**
- * 复制内容到粘贴板
- * content : 需要复制的内容
- * callback : 回调函数
- */
-export const copyToClip = function (content, callback) {
-  var aux = document.createElement('input')
-  aux.setAttribute('value', content)
-  document.body.appendChild(aux)
-  aux.select()
-  document.execCommand('copy')
-  document.body.removeChild(aux)
-  callback()
-}
-

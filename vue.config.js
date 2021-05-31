@@ -35,6 +35,11 @@ module.exports = {
       config.optimization.minimizer[0].options.terserOptions.compress.drop_debugger = true;
     }
 
+    if(process.env.use_analyzer) {
+      const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+      config.plugins.push(new BundleAnalyzerPlugin());
+    }
+
     // 按照自己项目需要配置
     config['externals'] = {};
   },
@@ -44,7 +49,7 @@ module.exports = {
     config.plugins.delete('prefetch');
     // 移除 preload 插件
     config.plugins.delete('preload');
-    
+
     const imagesRule = config.module.rule('images');
     imagesRule
       .use('url-loader')

@@ -1,7 +1,10 @@
-// 图片转base64
+/**
+ * 图片转base64
+ * @param {*} imgurl 图片url
+ * @returns
+ */
 export const getBase64Image = function (imgurl) {
   return new Promise((resolve) => {
-    // let img = imgurl ; //imgurl 就是你的图片路径
     function getBase64Image(img) {
       const canvas = document.createElement('canvas');
       canvas.width = img.width;
@@ -60,3 +63,50 @@ export const getObjectURL = (file) => {
  */
 export const base64ToUrl = base64 => getObjectURL(base64toBlob(base64));
 
+/**
+ * 图片下载
+ * @param imgsrc 图片地址
+ * @param name: 图片名称
+ */
+export const downIamge = (imgsrc, name) => { // 下载图片地址和图片名
+  var image = new Image()
+  // 解决跨域 Canvas 污染问题
+  image.setAttribute('crossOrigin', 'anonymous')
+  image.onload = function () {
+    var canvas = document.createElement('canvas')
+    canvas.width = image.width
+    canvas.height = image.height
+    var context = canvas.getContext('2d')
+    context.drawImage(image, 0, 0, image.width, image.height)
+    var url = canvas.toDataURL('image/png') // 得到图片的base64编码数据
+
+    var a = document.createElement('a') // 生成一个a元素
+    var event = new MouseEvent('click') // 创建一个单击事件
+    a.download = name || 'photo' // 设置图片名称
+    a.href = url // 将生成的URL设置为a.href属性
+    a.dispatchEvent(event) // 触发a的单击事件
+  }
+  image.src = imgsrc
+},
+
+/**
+ * 获取图片分辨率
+ * @param file 文件数据
+ */
+export const getImageWidthHeight = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = function () {
+      if (reader.readyState === 2) {
+        const img = new Image()
+        img.src = reader.result
+        img.onload = function () {
+          resolve(this.width + '*' + this.height)
+        }
+      } else {
+        reject()
+      }
+    }
+  })
+},
