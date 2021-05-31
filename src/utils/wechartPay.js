@@ -10,7 +10,7 @@ const { orderNo, id } = this.$route.query;
 const params = {
   orderNo,
   payChannel: "wechat_wap",
-  // https://agent.manniuhealth.com + /h5-agent-course + /course-success
+  // https://baidu.com + /h5-agent-course + /course-success
   redirectURL:
     process.env.VUE_APP_SERVICE_URL +
     process.env.VUE_APP_BASE_URL +
@@ -53,7 +53,7 @@ function handleWakeWeChatPay(userInfo) {
     orderNo,
     payChannel: "wechat_jsapi",
     openId: userInfo.openid,
-    // https://agent.manniuhealth.com + /h5-agent-course + /course-success
+    // https://baidu.com + /h5-agent-course + /course-success
     redirectURL:
       process.env.VUE_APP_SERVICE_URL +
       process.env.VUE_APP_BASE_URL +
