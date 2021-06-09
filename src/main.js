@@ -24,6 +24,9 @@ Vue.prototype.$Def = $Def;
 import Directives from '@/directives/index';
 Vue.use(Directives);
 
+import Vant from 'vant';
+Vue.use(Vant);
+
 // 系统错误捕获
 const errorHandler = (error, vm) => {
   console.error('抛出全局异常');

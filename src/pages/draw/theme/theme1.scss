@@ -1,0 +1,34 @@
+.hma-draw--theme1 {
+
+  .hma-draw {
+
+    &__tip {
+      color: #FFDC1B;
+    }
+
+    &__label,
+    &__name {
+      color: #FFE336;
+    }
+
+    &__label,
+    &__value {
+      background: rgba(0,0,0,.3);
+    }
+
+    &__rulebtn {
+      background: rgba(0,0,0,.2);
+      color: #FFE736;
+
+      > span {
+        &::before,
+        &::after {
+          background: #ffe736;
+        }
+      }
+    }
+    &__ruletxt {
+      color: #FFFE8B;
+    }
+  }
+}

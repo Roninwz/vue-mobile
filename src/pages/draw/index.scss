@@ -1,0 +1,101 @@
+.hma-draw {
+  // 解决父元素跟着一起下移(毗邻)的问题
+  // border: 1px solid transparent;
+
+  &__wrapper {
+    // margin-top: 71px;
+    padding: 50px 0 22px;
+  }
+
+  &__tip {
+    margin-bottom: 22px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  &__turntable {
+    margin-top: 15px;
+  }
+
+  &__notice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0 22px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__label,
+  &__value {
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__label {
+    width: 82px;
+    border-radius: 14px 0 0 14px;
+  }
+
+  &__value {
+    width: 243px;
+    padding-left: 12px;
+    margin-left: 2px;
+    color: #fff;
+    text-align: left;
+    border-radius: 0 14px 14px 0;
+  }
+
+  &__swipe {
+    height: 100%;
+    box-sizing: border-box;
+  }
+
+  &__rulebtn {
+    width: 157px;
+    height: 33px;
+    margin: 18px auto 19px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 17px;
+
+    > span {
+      position: relative;
+      display: block;
+      width: max-content;
+      margin: 0 auto;
+
+      &::before,
+      &::after {
+        position: absolute;
+        top: 50%;
+        width: 26px;
+        height: 1px;
+        content: " ";
+        transform: translate(0, -50%);
+      }
+
+      &::before {
+        left: -38px;
+      }
+
+      &::after {
+        right: -38px;
+      }
+    }
+  }
+
+  &__ruletxt {
+    width: 287px;
+    margin: 0 auto;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+}

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import videoRouter from './videoRouter';
 import echartsRouter from './echartsRouter';
+import drawRouter from './drawRouter';
 import demoRouter from './demoRouter';
 Vue.use(VueRouter);
 
@@ -25,6 +26,7 @@ const router = new VueRouter({
     },
     ...videoRouter,
     ...echartsRouter,
+    ...drawRouter,
     ...demoRouter
   ],
 });
