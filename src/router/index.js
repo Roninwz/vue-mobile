@@ -4,6 +4,7 @@ import videoRouter from './videoRouter';
 import echartsRouter from './echartsRouter';
 import drawRouter from './drawRouter';
 import demoRouter from './demoRouter';
+import vantRouter from './vantRouter';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -27,7 +28,8 @@ const router = new VueRouter({
     ...videoRouter,
     ...echartsRouter,
     ...drawRouter,
-    ...demoRouter
+    ...demoRouter,
+    ...vantRouter,
   ],
 });
 

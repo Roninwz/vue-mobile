@@ -120,7 +120,7 @@ export function initWeChatSDK({ appId, timeStamp: timestamp, nonceStr, signature
         'onMenuShareTimeline', // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口（即将废弃）
         'onMenuShareAppMessage', // 获取“分享给朋友”按钮点击状态及自定义分享内容接口（即将废弃）
         'chooseWXPay', // 发起一个微信支付请求
-        'hideMenuItems',  // 批量隐藏功能按钮接口
+        'hideMenuItems', // 批量隐藏功能按钮接口
     ];
     return new Promise(resolve => {
         window.wx.config({ debug, appId, timestamp, nonceStr, signature, jsApiList });
@@ -266,11 +266,11 @@ export function transFullPath() {
 // ios后退关闭
 export function wxClose() {
     const state = {
-        title: "title",
-        url: "#"
+        title: 'title',
+        url: '#'
     };
-    window.history.pushState(state, "title", "#");
-    window.addEventListener("popstate", function() {
+    window.history.pushState(state, 'title', '#');
+    window.addEventListener('popstate', function() {
         window['wx'].closeWindow();
     }, false);
 }

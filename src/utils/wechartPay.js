@@ -1,20 +1,20 @@
-import { wakeWeChatPay } from "@/https/course";
+import { wakeWeChatPay } from '@/https/course';
 import {
   serialize,
   redirectWeChatByAppId,
   initWeChatActivity
-} from "@/utils/wechat";
+} from '@/utils/wechat';
 const { orderNo, id } = this.$route.query;
 
 // **************  浏览器唤起微信支付 --- 开始  ***************
 const params = {
   orderNo,
-  payChannel: "wechat_wap",
+  payChannel: 'wechat_wap',
   // https://baidu.com + /h5-agent-course + /course-success
   redirectURL:
     process.env.VUE_APP_SERVICE_URL +
     process.env.VUE_APP_BASE_URL +
-    "/course-success" +
+    '/course-success' +
     serialize({ orderNo, id })
 };
 
@@ -33,11 +33,11 @@ wakeWeChatPay(params)
 // **************  微信内唤起微信支付 --- 开始 ***************
 async function checkAuthProcess() {
   const {
-    id = "",
-    shareId = "",
-    code = "",
-    orderNo = "",
-    price = ""
+    id = '',
+    shareId = '',
+    code = '',
+    orderNo = '',
+    price = ''
   } = this.$route.query;
   const params = { id, shareId, orderNo, price };
   if (!code) {
@@ -51,13 +51,13 @@ function handleWakeWeChatPay(userInfo) {
   const { id, orderNo } = this.$route.query;
   const params = {
     orderNo,
-    payChannel: "wechat_jsapi",
+    payChannel: 'wechat_jsapi',
     openId: userInfo.openid,
     // https://baidu.com + /h5-agent-course + /course-success
     redirectURL:
       process.env.VUE_APP_SERVICE_URL +
       process.env.VUE_APP_BASE_URL +
-      "/course-success" +
+      '/course-success' +
       serialize({ orderNo, id })
   };
   wakeWeChatPay(params)
@@ -74,15 +74,15 @@ function handleWakeWeChatPay(userInfo) {
 function wechatJsApiPay(params, orderNo, id) {
   payInWechat(params)
     .then(({ code, data }) => {
-      if (code === "success") {
+      if (code === 'success') {
         this.$router.push({
-          path: "/course-success",
+          path: '/course-success',
           query: { orderNo, id }
         });
       }
     })
     .catch(({ code, data }) => {
-      this.$toast("支付失败");
+      this.$toast('支付失败');
     });
 }
 // **************  微信内唤起微信支付 --- 结束 ***************
@@ -102,22 +102,22 @@ export function payInWechat(data) {
       timestamp: Number(data.timestamp), // 支付签名时间戳
       nonceStr: data.nonce_str, // 支付签名随机串
       package: `prepay_id=${data.prepay_id}`, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
-      signType: "MD5", // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+      signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
       paySign: data.paysign, // 支付签名
       success: function(res) {
         // 支付成功
-        resolve({ code: "success", data: res });
+        resolve({ code: 'success', data: res });
       },
       cancel: function(res) {
         // 支付取消
-        resolve({ code: "cancel", data: res });
+        resolve({ code: 'cancel', data: res });
       },
       fail: function(res) {
         // 支付失败
-        reject({ code: "fail", data: res });
+        reject({ code: 'fail', data: res });
       }
     };
-    console.log("payParam", payParam);
+    console.log('payParam', payParam);
     window.wx.chooseWXPay(payParam);
   });
 }
@@ -131,17 +131,17 @@ export function payInWechat(data) {
 export function getWeChatpay(obj) {
   return new Promise(resolve => {
     WeixinJSBridge.invoke(
-      "getBrandWCPayRequest",
+      'getBrandWCPayRequest',
       {
-        appId: obj.wechatappid, //公众号名称，由商户传入
-        timeStamp: obj.timestamp, //时间戳，自1970年以来的秒数
-        nonceStr: obj.nonceStr, //随机串
+        appId: obj.wechatappid, // 公众号名称，由商户传入
+        timeStamp: obj.timestamp, // 时间戳，自1970年以来的秒数
+        nonceStr: obj.nonceStr, // 随机串
         package: `prepay_id=${obj.prepayId}`,
-        signType: "MD5", //微信签名方式：
-        paySign: obj.paysign //微信签名
+        signType: 'MD5', // 微信签名方式：
+        paySign: obj.paysign // 微信签名
       },
       function(res) {
-        console.log("微信支付回调------", res);
+        console.log('微信支付回调------', res);
         resolve(res);
         // if(res.err_msg == "get_brand_wcpay_request:ok" ){
         // // 使用以上方式判断前端返回,微信团队郑重提示：

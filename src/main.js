@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from '@/router';
 import store from '@/store';
 import '@/filters';
+import 'vant/lib/index.css';
 // 全局重写vant样式
 import '@/styles/Vant.scss';
 import Vconsole from 'vconsole';

@@ -21,9 +21,7 @@
         @gamestart="ongamestart"
         @gameover="ongameover"
       />
-
     </div>
-
   </div>
 </template>
 
