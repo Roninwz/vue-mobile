@@ -1,24 +1,15 @@
-# vue-mobile
+# vue 移动端项目模板
 
-## Project setup
-```
-npm install
-```
+## 安装使用
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+安装：`npm install`
 
-### Compiles and minifies for production
-```
-npm run build
-```
+运行(本地环境)：`npm run start`
 
-### Lints and fixes files
-```
-npm run lint
-```
+打包(本地环境)：`npm run build:localdev`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+lint：`npm run lint`
+
+性能分析：`npm run analyzer`
+
+## 功能列表
