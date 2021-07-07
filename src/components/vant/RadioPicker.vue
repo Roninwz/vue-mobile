@@ -91,37 +91,42 @@
 .picker {
   .toolbar {
     display: flex;
+    height: 45px;
+    padding: 0 16px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 -4px 15px 0 rgba(0, 0, 0, 0.05);
     align-items: center;
     justify-content: space-between;
-    height: 45px;
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0px -4px 15px 0px rgba(0, 0, 0, 0.05);
-    padding: 0 16px;
+
     .cancel,
     .confirm {
       height: 45px;
-      line-height: 45px;
       font-size: 16px;
       font-weight: 400;
+      line-height: 45px;
       color: rgba(131, 139, 152, 1);
     }
+
     .title {
       height: 23px;
       font-size: 16px;
       font-weight: 400;
-      color: rgba(58, 71, 97, 1);
       line-height: 23px;
+      color: rgba(58, 71, 97, 1);
     }
   }
+
   .columns {
     padding: 0 22px;
   }
+
   .row {
-    height: 45px;
     display: flex;
-    align-items: center;
+    height: 45px;
     border-bottom: 1px solid rgba(151, 151, 151, 0.3);
+    align-items: center;
   }
+
   .img-icon {
     width: 20px;
     height: 20px;

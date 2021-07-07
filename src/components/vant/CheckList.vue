@@ -166,35 +166,42 @@
 .popup {
   .top-bar {
     display: flex;
+    height: 45px;
+    padding-right: 16px;
+    padding-left: 16px;
+    font-size: 16px;
     align-items: center;
     justify-content: space-between;
-    height: 45px;
-    font-size: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
+
     .cancel {
       color: #838b98;
     }
+
     .title {
       color: #3a4761;
     }
+
     .confirm {
       color: $color15;
     }
   }
+
   .popup-body {
-    box-shadow: 0px -9px 30px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -9px 30px 0 rgba(0, 0, 0, 0.05);
+
     .van-cell:not(:last-child)::after {
       border-bottom: 1px solid #d8d8d8;
     }
+
     .van-cell {
       line-height: 30px;
     }
+
     .popup .popup-body .van-cell[data-v-016c4e72] {
       font-size: 15px;
       font-weight: 400;
-      color: rgba(58, 71, 97, 1);
       line-height: 21px;
+      color: rgba(58, 71, 97, 1);
     }
   }
 }

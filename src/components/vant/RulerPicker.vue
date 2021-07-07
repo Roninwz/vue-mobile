@@ -148,41 +148,48 @@
 .van-popup--bottom.van-popup--round {
   border-radius: 0;
 }
+
 .statureHeader {
   width: 90%;
-  margin-left: 5%;
   height: 50px;
+  margin-left: 5%;
   line-height: 50px;
+
   span {
     display: block;
     font-size: 14px;
     // margin: 20px 0;
   }
+
   span:nth-child(1) {
     float: left;
     color: #838b98;
   }
+
   span:nth-child(2) {
     float: right;
     color: #ff707b;
   }
 }
+
 .stature {
   width: 100%;
-  text-align: center;
   margin-top: 20px;
-  color: #3a4761;
   font-size: 16px;
   font-weight: bold;
+  color: #3a4761;
+  text-align: center;
 }
+
 .statureNum {
   width: 100%;
-  text-align: center;
   margin: 20px 0;
-  color: #ff707b;
   font-size: 18px;
   font-weight: bold;
+  color: #ff707b;
+  text-align: center;
 }
+
 ::v-deep .cs-rule .cs-scroll-item-pointer {
   border-color: #ff707b;
 }

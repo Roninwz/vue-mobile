@@ -24,10 +24,10 @@
 <script>
 /**
  * <Video
-        width="100%"
-        height="146"
-        video-url="https://baidu.com/czone/child-health/ad001.mp4"
-      />
+      width="100%"
+      height="146"
+      video-url="https://baidu.com/czone/child-health/ad001.mp4"
+    />
  */
   export default {
     components: {},
